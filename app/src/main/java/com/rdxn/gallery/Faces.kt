@@ -104,6 +104,12 @@ class FaceStore(private val dir: File) {
 
     @Synchronized fun rename(pid: Int, name: String) { persons[pid]?.name = name.trim() }
 
+    @Synchronized fun clearAll() {
+        faces.clear(); persons.clear(); processed.clear(); nextPid = 1; nextKey = 1L
+        thumbDir.listFiles()?.forEach { it.delete() }
+        save()
+    }
+
     @Synchronized fun snapshot(): List<PersonUi> {
         val byPid = HashMap<Int, MutableList<FaceRec>>()
         for (f in faces) byPid.getOrPut(f.pid) { ArrayList() }.add(f)
@@ -260,7 +266,7 @@ class Indexer(private val ctx: Context, private val store: FaceStore) {
             try {
                 var done = 0
                 while (true) {
-                    val todo = MediaRepo.load(ctx).filter { !store.isProcessed(it.id) }
+                    val todo = MediaRepo.load(ctx).filter { !it.isVideo && !store.isProcessed(it.id) }
                     if (todo.isEmpty()) break
                     if (det == null || emb == null) {
                         det = FaceDetection.getClient(

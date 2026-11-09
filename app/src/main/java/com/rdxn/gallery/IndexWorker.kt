@@ -12,6 +12,10 @@ import java.util.concurrent.TimeUnit
 /** Jalan di latar belakang saat ada foto baru (walau aplikasi tertutup), lalu mendaftar ulang dirinya. */
 class IndexWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
     override suspend fun doWork(): Result {
+        if (!Prefs(applicationContext).autoScan) {
+            IndexScheduler.schedule(applicationContext)
+            return Result.success()
+        }
         try {
             Indexer(applicationContext, Faces.get(applicationContext)).run()
         } catch (e: Exception) {

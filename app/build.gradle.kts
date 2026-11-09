@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId = "com.rdxn.gallery"
-        minSdk = 28
+        minSdk = 30
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
         ndk { abiFilters += listOf("arm64-v8a") }   // HP modern (64-bit) saja, biar APK lebih kecil
     }
 
@@ -46,4 +46,9 @@ dependencies {
     implementation("com.google.mlkit:face-detection:16.1.7")
     implementation("com.google.android.gms:play-services-tasks:18.2.0")
     implementation("com.microsoft.onnxruntime:onnxruntime-android:1.23.2")
+    implementation("io.coil-kt:coil-video:2.7.0")
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
+    implementation("androidx.biometric:biometric:1.1.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
 }

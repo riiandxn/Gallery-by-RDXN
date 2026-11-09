@@ -202,8 +202,8 @@ class GalleryViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     // ---------------- pengaturan ----------------
-    fun setAutoScan(v: Boolean) { autoScan = v; prefs.autoScan = v; if (v) startIndexing() }
-    fun setLockHidden(v: Boolean) { lockHidden = v; prefs.lockHidden = v }
+    fun updateAutoScan(v: Boolean) { autoScan = v; prefs.autoScan = v; if (v) startIndexing() }
+    fun updateLockHidden(v: Boolean) { lockHidden = v; prefs.lockHidden = v }
     fun cycleStartCols() {
         val order = listOf(3, 5, 6)
         val next = order[(order.indexOf(prefs.startCols) + 1).mod(order.size)]

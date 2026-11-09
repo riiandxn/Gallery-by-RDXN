@@ -307,13 +307,13 @@ private fun SettingsTab(vm: GalleryViewModel) {
         SettingRow("Tema", "Mengikuti pengaturan HP (terang/gelap)")
         SectionLabel("Pengenalan wajah")
         SettingRow("Pindai foto baru otomatis", "Di latar belakang, hanya di HP") {
-            Switch(checked = vm.autoScan, onCheckedChange = { vm.setAutoScan(it) })
+            Switch(checked = vm.autoScan, onCheckedChange = { vm.updateAutoScan(it) })
         }
         SettingRow("Pindai ulang semua foto", "Data wajah dihapus lalu dibuat ulang", onClick = { confirmRescan = true })
         SettingRow("Hapus data wajah", "Sekaligus mematikan pemindaian otomatis", onClick = { confirmClear = true })
         SectionLabel("Privasi")
         SettingRow("Kunci album Tersembunyi", "Pakai sidik jari, wajah, atau PIN HP") {
-            Switch(checked = vm.lockHidden, onCheckedChange = { vm.setLockHidden(it) })
+            Switch(checked = vm.lockHidden, onCheckedChange = { vm.updateLockHidden(it) })
         }
         SectionLabel("Baru Dihapus")
         SettingRow("Disimpan sebelum dihapus permanen", "Diatur oleh Android, sekitar 30 hari")
